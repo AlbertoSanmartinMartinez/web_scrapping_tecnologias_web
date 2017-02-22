@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 global url = "https://www.packtpub.com/packt/offers/free-learning/"
 
 class Client(object):
-    '''clase principal para el cliente'''
+    '''clase principal  para el cliente'''
 
     def getWeb(self, page):
         '''metodo que descarga la web'''
@@ -30,6 +30,9 @@ class Client(object):
     def main(self):
         '''constructor de la clase cliente'''
         web = self.getWeb(url)
+
+    def hhacryj(self):
+        pass
 
 if __name__ == "__main__":
     client = Client()
