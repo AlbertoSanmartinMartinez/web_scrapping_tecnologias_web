@@ -11,29 +11,37 @@ Aplicacion para obtener el libro gratuito dirario
 import urllib2
 from bs4 import BeautifulSoup
 
-global url = "https://www.packtpub.com/packt/offers/free-learning/"
+class Book():
+    '''clase principal  para el libro'''
 
-class Client(object):
-    '''clase principal  para el cliente'''
+    def __init__(self, url):
+        '''constructor de la clase cliente'''
+        print "constructor llamado"
+        self.url = url
+        self.html_web = self.getWeb(self.url)
+        self.title = self.getTitle(self.html_web)
 
-    def getWeb(self, page):
+    def getWeb(self, url):
         '''metodo que descarga la web'''
-        f = urllib2.urlopen(page)
+        print "obtenemos la web"
+        f = urllib2.urlopen(url)
         html = f.read()
         f.close()
         return html
 
-    def showBook(self, title):
+    def showBook(self):
         '''metodo que muestra el titulo del libro'''
-        print title
+        print self.url
+        print self.web
+        print self.title
 
-    def main(self):
-        '''constructor de la clase cliente'''
-        web = self.getWeb(url)
-
-    def hhacryj(self):
+    def getTitle(self, web):
+        '''metodo que devuelve el titulo dle libro'''
+        print "obtenemos el titulo"
         pass
 
 if __name__ == "__main__":
-    client = Client()
-    client.main()
+
+    url = "https://www.packtpub.com/packt/offers/free-learning/"
+    book = Book(url)
+    book.showBook()
