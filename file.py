@@ -23,7 +23,7 @@ class Book():
         self.title = self.getTitle(self.html_web)
 
     def getCode(self,url):
-        '''metodo que obtiene el codigo de la web'''
+        '''metodo que obtiene el codigo de la web, no lo usaremos, esta explicado en el reame.md'''
         req = requests.get(url)
         code = req.status_code
         return code
@@ -39,19 +39,23 @@ class Book():
         '''metodo que muestra el titulo del libro'''
         print "la url es: " + self.url
         print "el codigo de la web es: ", self.web_code
-        print "el titulo del libro es: " + self.title
+        print "el titulo del libro es: " + self.title.title()
 
     def getTitle(self, html_web):
         '''metodo que devuelve el titulo dle libro'''
         soup = BeautifulSoup(html_web, 'html.parser')
-        elements = soup.find_all("div")
-        #print elements
-        result = []
-        for aux in elements:
-            name = aux.find("dotd-title")
-            result.append(name)
-        print result
+        elements = soup.find_all('div', 'dotd-title')
+        for element in elements:
+            result = element.find('h2').text
+
+        #print "la longitud es: ", len(result)
+        aux = self.arreglar_titulo(result)
         return result
+
+    def arreglar_titulo(self, result):
+        lista = []
+        for i in range(len(result)):
+            print result[i]
 
 if __name__ == "__main__":
 
